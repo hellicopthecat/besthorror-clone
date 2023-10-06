@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
   $(".movie").each(function (index) {
     const $recommendSection = $(this).find(".recommend");
     const $likesCount = $recommendSection.find("span");
@@ -21,6 +21,6 @@ $(function () {
     $recommendSection.find("button:last-child").on("click", handlePlus);
   });
   for (let a = 0; a <= $(".movie").length; a++) {
-    $(".rank span").text((index) => index + 1);
+    $(".rank span").text((index) => $(".movie").length - index);
   }
 });
