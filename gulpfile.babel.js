@@ -1,5 +1,5 @@
 import gulp from "gulp";
-import { deleteSync } from "del";
+import {deleteSync} from "del";
 import minify from "gulp-csso";
 import gulpSass from "gulp-sass";
 import sass2 from "sass";
