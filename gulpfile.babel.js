@@ -8,7 +8,6 @@ import concat from "gulp-concat";
 import uglify from "gulp-uglify";
 import replace from "gulp-replace";
 import image from "gulp-image";
-import ghPages from "gulp-gh-pages";
 
 const jquery = "./src/js/jquery.min.js";
 const sass = gulpSass(sass2);
@@ -75,10 +74,6 @@ const watch = () => {
   gulp.watch(routes.image.watch, img);
 };
 
-const ghDeploy = async () => {
-  await gulp.src("dest/**/*").pipe(ghPages());
-};
-
 const clean = async () => await deleteSync(["dest/"]);
 
 const prepare = async () => await clean();
@@ -94,4 +89,4 @@ const live = gulp.parallel([watch]);
 
 export const build = gulp.series([prepare, assets]);
 export const dev = gulp.series([build, live]);
-export const deploy = gulp.series([build, ghDeploy]);
+// export const deploy = gulp.series([build, ghDeploy]);
