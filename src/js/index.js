@@ -1,4 +1,3 @@
-import $ from "jquery";
 $(document).ready(function () {
   $(".movie").each(function (index) {
     const $recommendSection = $(this).find(".recommend");
