@@ -25,7 +25,6 @@
     "node-sass": "^7.0.1"
   },
   "dependencies": {
-    "gulp-gh-pages": "^0.5.4",
     "sass": "^1.68.0"
   }
 }
