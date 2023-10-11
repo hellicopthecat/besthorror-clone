@@ -7,7 +7,8 @@ import autoprefixer from "gulp-autoprefixer";
 import concat from "gulp-concat";
 import uglify from "gulp-uglify";
 import replace from "gulp-replace";
-import image from "gulp-image";
+import image from "gulp-imagemin";
+import ghPages from "gh-pages";
 
 const jquery = "./src/js/jquery.min.js";
 const sass = gulpSass(sass2);
@@ -39,6 +40,7 @@ const homepage = () => {
     .pipe(replace("dest/css/", "css/"))
     .pipe(replace('<script src="src/js/jquery.min.js"></script>', ""))
     .pipe(replace("src/js/", "js/"))
+    .pipe(replace("src/img/", "img/"))
     .pipe(gulp.dest(routes.html.dest));
 };
 
@@ -74,6 +76,17 @@ const watch = () => {
   gulp.watch(routes.image.watch, img);
 };
 
+const ghDeploy = async (cb) => {
+  await ghPages.publish(
+    "dest",
+    {
+      branch: "gh-pages",
+      message: "auto deploy",
+    },
+    cb
+  );
+};
+
 const clean = async () => await deleteSync(["dest/"]);
 
 const prepare = async () => await clean();
@@ -89,4 +102,4 @@ const live = gulp.parallel([watch]);
 
 export const build = gulp.series([prepare, assets]);
 export const dev = gulp.series([build, live]);
-// export const deploy = gulp.series([build, ghDeploy]);
+export const deploy = gulp.series([ghDeploy]);
