@@ -2,12 +2,12 @@ import gulp from "gulp";
 import {deleteSync} from "del";
 import minify from "gulp-csso";
 import gulpSass from "gulp-sass";
-import sass2 from "sass";
+import * as sass2 from "sass";
 import autoprefixer from "gulp-autoprefixer";
 import concat from "gulp-concat";
 import uglify from "gulp-uglify";
 import replace from "gulp-replace";
-import image from "gulp-imagemin";
+
 import ghPages from "gh-pages";
 
 const jquery = "./src/js/jquery.min.js";
@@ -66,7 +66,7 @@ const js = () => {
 };
 
 const img = () => {
-  gulp.src(routes.image.watch).pipe(image()).pipe(gulp.dest(routes.image.dest));
+  gulp.src(routes.image.watch).pipe(gulp.dest(routes.image.dest));
 };
 
 const watch = () => {
